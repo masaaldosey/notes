@@ -73,3 +73,16 @@
 - CMake is able to produce buildsystems on demand for every platform
  with a single configuration, _i.e._, same project files.
 
+> Commands to build a very simple application:
+>
+    > cmake -B build
+    >
+    > cmake --build build
+>
+> Corresponding `CMakeLists.txt`:
+    > ```cmake
+    > cmake_minimum_required(VERSION 3.20)
+    > project(hello)
+    > add_executable(hello hello.cpp)
+    > ```
+
