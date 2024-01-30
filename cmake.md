@@ -40,6 +40,9 @@
 - It is the _orchestrator_ of the building process: knows what steps
  need to done, what the end goal is, and how to find the right tools
  and materials for the job.
+
+[!stages-cmake.png](assets/stages-cmake.png)
+
 - There are three stages:
     1. **Configuration**
         - Read project details stored in _source tree_ directory and
@@ -63,5 +66,10 @@
          configuration stage. To explicitly run only the configuration
          stage, you can use the `cmake-gui` utility.
     3. **Building**
-        - 
+        - In this stage, we run the appropriate _build tool_.
+        - The build tool will execute steps to produce **targets** with
+         compilers, linkers, static and dynamic analysis tools, test
+         frameworks, etc.
+- CMake is able to produce buildsystems on demand for every platform
+ with a single configuration, _i.e._, same project files.
 
