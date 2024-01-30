@@ -41,7 +41,7 @@
  need to done, what the end goal is, and how to find the right tools
  and materials for the job.
 
-[!stages-cmake.png](assets/stages-cmake.png)
+![stages-cmake.png](assets/stages-cmake.png)
 
 - There are three stages:
     1. **Configuration**
