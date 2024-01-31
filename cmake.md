@@ -1,5 +1,24 @@
 # Modern CMake
 
+## Written on Jan 31 2024
+
+### Mastering the CMake executable's CLI
+- Syntax of the _buildsystem_ generation.
+    ```bash
+    $ cmake -B ./build -S ./project # source tree in `project`
+    ```
+    > The `-S` is optional. Not providing `-B` will result in a
+    > messy in-source build.
+- Selecting and configuring which build tool to use for building
+ is handled by CMake. It can by overriden as below.
+    ```bash
+    $ cmake -G <generator-name> <path-to-source>
+    ```
+- The `CMAKE_BUILD_TYPE` variable can take values: `Debug`,
+ `Release`, `MinSizeRel` or `RelWithDebInfo`. This would generate
+ a build tree specific to the build type.
+
+
 ## Written on Jan 30 2024
 
 > While reading Modern CMake for C++
@@ -79,8 +98,7 @@
     >
     > cmake --build build
 >
-> Corresponding `CMakeLists.txt`:
->
+Corresponding `CMakeLists.txt`:
     ```cmake
     cmake_minimum_required(VERSION 3.20)
     project(hello)
@@ -90,20 +108,3 @@
 - The above example, generates a buildsystem that is stored in the
  `build` directory, executes the build stage and produces a final
  binary that you can run.
-
-### Mastering the CMake executable's CLI
-- Syntax of the _buildsystem_ generation.
-    ```bash
-    $ cmake -B ./build -S ./project # source tree in `project`
-    ```
-    > The `-S` is optional. Not providing `-B` will result in a
-    > messy in-source build.
-- Selecting and configuring which build tool to use for building
- is handled by CMake. It can by overriden as below.
-    ```bash
-    $ cmake -G <generator-name> <path-to-source>
-    ```
-- The `CMAKE_BUILD_TYPE` variable can take values: `Debug`,
- `Release`, `MinSizeRel` or `RelWithDebInfo`. This would generate
- a build tree specific to the build type.
-
