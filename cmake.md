@@ -100,11 +100,11 @@
 >
 
 Corresponding `CMakeLists.txt`:
-    ```cmake
-    cmake_minimum_required(VERSION 3.20)
-    project(hello)
-    add_executable(hello hello.cpp)
-    ```
+```cmake
+cmake_minimum_required(VERSION 3.20)
+project(hello)
+add_executable(hello hello.cpp)
+```
 
 - The above example, generates a buildsystem that is stored in the
  `build` directory, executes the build stage and produces a final
