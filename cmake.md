@@ -3,6 +3,7 @@
 ## Written on Feb 02 2024
 
 > While reading Modern CMake for C++
+>
 > [Buy](https://www.packtpub.com/product/modern-cmake-for-c/9781801070058)
 
 ### Mastering the CMake executable's CLI
@@ -51,11 +52,14 @@
 - For bigger projects, heirarchichal `CMakeLists.txt` allow for granular
  configuration (via `add_subdirectory`).
 
+### Config-files for packages
+- 
 
 
 ## Written on Jan 30 2024
 
 > While reading Modern CMake for C++
+>
 > [Buy](https://www.packtpub.com/product/modern-cmake-for-c/9781801070058)
 
 
