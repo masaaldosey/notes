@@ -63,6 +63,16 @@
 - Do not manually edit these files - `cmake_install.cmake`,
  `CTestTestfile.cmake`, `CPackConfig.cmake` files.
 
+### CMakePresets.json and CMakeUserPresets.json
+- When building more than type of build tree for a given project, we can
+ leverage presets.
+- Presets are stored in JSON format in two files:
+    1. `CMakePresets.json`, meant for project authors to provide official
+     presets.
+    2. `CMakeUserPresets.json`, meant for customizing the project configuration
+     to your liking.
+- Presets are only useful after completion of initial setup.
+
 
 
 ## Written on Jan 30 2024
