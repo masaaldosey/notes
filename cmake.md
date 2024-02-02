@@ -1,6 +1,9 @@
 # Modern CMake
 
-## Written on Jan 31 2024
+## Written on Feb 02 2024
+
+> While reading Modern CMake for C++
+> [Buy](https://www.packtpub.com/product/modern-cmake-for-c/9781801070058)
 
 ### Mastering the CMake executable's CLI
 - Syntax of the _buildsystem_ generation.
@@ -16,7 +19,20 @@
     ```
 - The `CMAKE_BUILD_TYPE` variable can take values: `Debug`,
  `Release`, `MinSizeRel` or `RelWithDebInfo`. This would generate
- a build tree specific to the build type.
+ a build tree specific to the build type. Default is `Debug`.
+- There are multiple levels to filter the log outputs - `ERROR`,
+ `WARNING`, `NOTICE`, `STATUS`, `VERBOSE`, `DEBUG` or `TRACE`. By
+ default it is set to `STATUS`.
+- Instead of running `make` after generation of build tree, it is
+ recommended to do the following instead.
+    ```bash
+    $ cmake --build <dir>   # bare minimum
+    $ cmake --build <dir> -j [<number-of-jobs>] # for parallel builds
+    $ cmake --build <dir> -t clean  # remove build artifacts with `clean` target
+    $ cmake --build <dir> --clean-first # clean first and then build
+    $ cmake --build <dir> -v    # to obtain more detailed logs
+    ```
+- 
 
 
 ## Written on Jan 30 2024
