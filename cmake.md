@@ -73,6 +73,22 @@
      to your liking.
 - Presets are only useful after completion of initial setup.
 
+### CMake scripts
+- Instead of writing bash scripts, CMake allows for writing platform-agonistic
+ programming language scripts. You can execute scripts as follows.
+    ```bash
+    $ cmake -P script.cmake
+    ```
+- A script can be very complex or an empty file. It is recommended to call the
+ `cmake_minimum_required(...)` at the beginning of the script.
+    ```cmake
+    # Example script
+    cmake_minimum_required(VERSION 3.20.0)
+    message("Hello world")
+    file(WRITE Hello.txt "I am writing to a file")
+    ```
+- While executing scripts, the other stages such as configuration are not run
+ and the cache is not used.
 
 
 ## Written on Jan 30 2024
