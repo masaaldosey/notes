@@ -39,6 +39,18 @@
     $ cmake --install <dir> --component <comp>  # install only one component
     ```
 
+### CMakeLists.txt
+- CMake projects are configured with `CMakeLists.txt` files.
+- Need to provide at least one in the root of source tree directory.
+- This file is the first to get executed in the configuration stage and
+ should contain at least two commands.
+    ```cmake
+    cmake_minimum_required(VERSION <x.xx>)  # min expected version
+    project(<name>)   # project name gets stored to $PROJECT_NAME
+    ```
+- For bigger projects, heirarchichal `CMakeLists.txt` allow for granular
+ configuration (via `add_subdirectory`).
+
 
 
 ## Written on Jan 30 2024
