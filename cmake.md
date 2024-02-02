@@ -53,7 +53,16 @@
  configuration (via `add_subdirectory`).
 
 ### Config-files for packages
-- 
+- External packages which support CMake generally provide a configuration
+ file so that CMake understands how to use them.
+- Use `find_package(...)` command to include packages into your project.
+- CMake files describing packages are named `<PackageName>-config.cmake`
+ and `<PackageName>Config.cmake`.
+- You can specify which version of package you need and CMake will check
+ it in the associated `<Config>Version.cmake` file.
+- Do not manually edit these files - `cmake_install.cmake`,
+ `CTestTestfile.cmake`, `CPackConfig.cmake` files.
+
 
 
 ## Written on Jan 30 2024
