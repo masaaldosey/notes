@@ -23,8 +23,8 @@
 - There are multiple levels to filter the log outputs - `ERROR`,
  `WARNING`, `NOTICE`, `STATUS`, `VERBOSE`, `DEBUG` or `TRACE`. By
  default it is set to `STATUS`.
-- Instead of running `make` after generation of build tree, it is
- recommended to do the following instead.
+- Instead of running `make` after generation of build tree to build
+ the project, it is recommended to do the following instead.
     ```bash
     $ cmake --build <dir>   # bare minimum
     $ cmake --build <dir> -j [<number-of-jobs>] # for parallel builds
@@ -32,7 +32,13 @@
     $ cmake --build <dir> --clean-first # clean first and then build
     $ cmake --build <dir> -v    # to obtain more detailed logs
     ```
-- 
+- Once a project is built, users can install it on their system, _i.e._,
+ copy files to correct directories, install libraries, etc.
+    ```bash
+    $ cmake --install <dir> # bare minimum
+    $ cmake --install <dir> --component <comp>  # install only one component
+    ```
+
 
 
 ## Written on Jan 30 2024
