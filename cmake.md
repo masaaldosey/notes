@@ -37,7 +37,7 @@
  abstraction hierarchy should be expressed through executables and binaries.
 
 - A recommended project structure is shown below.
-![sample-proj-struct-cmake.png](assets/sample-proj-struct-cmake.png)
+    ![sample-proj-struct-cmake.png](assets/sample-proj-struct-cmake.png)
     - `cmake`: includes macros and functions, find_modules and one-off
      scripts.
     - `src`: will store the source of our binaries and libraries
@@ -48,6 +48,50 @@
 - If we are making a single executable or single library, we can use the
  following file tree structure.
 ![single-bin-lib-cmake.png](assets/single-bin-lib-cmake.png)
+
+### Working with Targets
+- Every project that is big enough will force you to introduce some form
+ of partitioning.
+- A **target** in CMake is the answer to this problem. A target can depend
+ on other targets.
+- CMake will take care of determining in what order targets have to be
+ built and then execute the necessary steps one by one.
+- CMake will create a buildsystem and fill it with recipes to compile each
+ of the source files and link them together into a single executable.
+- We can create a target using one the three commands:
+    1. `add_executable(...)`    (to build executables)
+    2. `add_library(...)`       (to build libraries)
+    3. `add_custom_target(...)` (code-sanitizer, compilation report)
+- `target_link_libraries(...)` is intended for use with actual libraries
+ and allows you to control property navigation. `add_dependencies(...)`
+ is meant to be used only with top-level targets to set their build order.
+- We can create a dependency graph in `dot/graphviz` format using CMake.
+ It supports both internal and external dependencies.
+    ```bash
+    $ cmake --graphviz=test.dot .
+    ```
+ The above command produces a text file which we can import to Graphviz
+ visualization software to render an image or produce PDF/SVG file.
+
+### Transitive usage requirements
+- We can this as *propagated properties* between the *source target*
+ (targets that get used) and *destination targets* (targets that use
+ other targets).
+    ```cmake
+    target_compile_definitions(<source> <INTERFACE|PUBLIC|PRIVATE>
+                    [items1 ...])
+    ```
+- The propagation keywords are:
+    1. `PRIVATE`, sets the property of the source target.
+    2. `INTERFACE`, sets the property of the destination targets.
+    3. `PUBLIC`, sets the property of the source and destination
+     targets.
+- When a property is not to be transitioned to any destination targets,
+ set it to `PRIVATE`. When such a transition is needed, choose `PUBLIC`.
+- In a situation where the source target doesn't use the property in
+ its implementation (`.cpp` files) and only in the headers, and these
+ are passed to consumer targets, `INTERFACE` is the choice.
+    ![property-prop-cmake.png](assets/property-prop-cmake.png)
 
 
 ## Written on Feb 02 2024
