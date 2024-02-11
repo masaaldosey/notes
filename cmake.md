@@ -93,6 +93,46 @@
  are passed to consumer targets, `INTERFACE` is the choice.
     ![property-prop-cmake.png](assets/property-prop-cmake.png)
 
+### Interface libraries
+- Library doesn't compile a target but simply serves as a utility target.
+- Interface libraries are used to represent **header only libraries**
+ and/or bundle a set of properties into a single unit.
+- Header only libraries are fairly easy to create (shown below).
+    ```cmake
+    add_library(Eigen INTERFACE
+        src/eigen.h src/vector.h src/matrix.h
+    )
+    target_include_directories(Eigen INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+        $<INSTALL_INTERFACE:include/Eigen>
+    )
+    ```
+ In the above code snippet, we create an Egen interface library with three headers.
+ We set its *include directories* to be `${CMAKE_CURRENT_SOURCE_DIR}/src` when a
+ target is exported and `include/Eigen` when it is installed.
+- To use such a library, we simply have to link against it. No actual linking occurs,
+ but CMake will understand this command as a request to propagate all the `INTERFACE`
+ properties to `executable` target.
+    ```cmake
+    target_link_libraries(executable Eigen)
+    ```
+- We could also use the above mechanism to create a logical target that can be a
+ placeholder for propagated properties. We can then use this target as a
+ dependency for other targets. This helps set properties in a clean, convenient
+ way.
+    ```cmake
+    add_library(warning_props INTERFACE)
+    target_compile_options(warning_props INTERFACE
+                -Wall -Wextra -Wpedantic
+    )
+    target_link_libraries(executable warning_props)
+    ```
+ We use the `warning_props` target to set *compile options* on the `executable`
+ target. Using these `INTERFACE` targets improves the readability and reusability
+ of your code. Using the `_props` suffix to easily differentiate interface libraries
+ from the regular ones.
+
+
 
 ## Written on Feb 02 2024
 
