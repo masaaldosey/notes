@@ -1,5 +1,55 @@
 # Modern CMake
 
+## Written on Feb 11 2024
+
+> While reading Modern CMake for C++
+>
+> [Buy](https://www.packtpub.com/product/modern-cmake-for-c/9781801070058)
+
+### Ignore files in Git
+- A template for a good `.gitignore` to skip files from Git is as below.
+    ```sh
+    # If you put build tree in the source tree add it like so:
+    build_debug/
+    build_release/
+    # Generated and user files
+    **/CMakeCache.txt
+    **/CMakeUserPresets.json
+    **/CTestTestfile.cmake
+    **/CPackConfig.cmake
+    **/cmake_install.cmake
+    **/install_manifest.txt
+    **/compile_commands.json
+    ```
+### CMake language commands
+- CMake provides commands which can be grouped into three categories:
+    1. **Scripting commands**, are always available and change the state
+     of the processor, access variables, etc.
+    2. **Project commands**, are available in projects and manipulate the
+     project state and build targets.
+    3. **CTest commands**, are available in CTest scripts and manage testing.
+- `set(...)` command accepts a plain text variable name as its first argument,
+ but `message(...)` command uses a variable reference wrapped in the `${}`
+ syntax.
+
+### Example project structure
+- A good project structure must be easy to navigate, be self-contained and,
+ abstraction hierarchy should be expressed through executables and binaries.
+
+- A recommended project structure is shown below.
+![sample-proj-struct-cmake.png](assets/sample-proj-struct-cmake.png)
+    - `cmake`: includes macros and functions, find_modules and one-off
+     scripts.
+    - `src`: will store the source of our binaries and libraries
+    - `doc`: used for building the documentation
+    - `extern`: configuration for the external projects we build from
+     source.
+    - `test`: contains code for automated tests.
+- If we are making a single executable or single library, we can use the
+ following file tree structure.
+![single-bin-lib-cmake.png](assets/single-bin-lib-cmake.png)
+
+
 ## Written on Feb 02 2024
 
 > While reading Modern CMake for C++
